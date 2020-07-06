@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { TextInput, Button, Textarea} from 'react-materialize'
 import API from '../utils/API'
 import axios from 'axios'
+import Messages from './Messages'
 
 import logoSVGBlanc from '../assets/logo_studio_SVG_blanc.svg'
 
@@ -39,8 +40,17 @@ class Dashboard extends Component {
   componentDidMount () {
     // GET INFOS FROM TOKEN
     axios.get(`http://localhost:3001/user/message/user/${this.state.currentUser.userId}`, { headers: API.authHeader() })
-      .then(data => { console.log(data) })
+      .then(res => { console.log(res) })
+      
+      .then((messages => {
+        // const allMessages = userWithMessages.messages
+        this.setState({ usersMessages: messages })
+        console.log(messages)
+
+      }))
+      
       .catch(err => { console.log(err) })
+      
     
   }
 
@@ -74,13 +84,15 @@ class Dashboard extends Component {
 
   render () {
 
-    const { currentUser } = this.state
+    const { currentUser, usersMessages } = this.state
+
+    
 
     return (
       <div>
 
         <div className='backBlue'/>
-        <img src={logoSVGBlanc} class='logo1' alt='' />
+        <img src={logoSVGBlanc} className='logo1' alt='' />
         
         <div className='dashboard'>
             <div className='userSpace'>
@@ -89,6 +101,7 @@ class Dashboard extends Component {
             </div>
             
             <h1>Votre espace</h1>
+            <h3>Ecrire un message</h3>
             <div>
               <form onSubmit={this.handleSend} className='createMessageForm'>
               <TextInput
@@ -121,6 +134,14 @@ class Dashboard extends Component {
               <Button type='submit'>Envoyer</Button>
             </form>
             </div>
+
+            <h3>Messages envoyés</h3>
+
+            {/* <ul>
+            {usersMessages.map(message => (
+              <Messages key={message.id} id={message.id} title={message.title}>{message.message}</Messages>
+            ))}
+            </ul> */}
             
         </div>
       </div>

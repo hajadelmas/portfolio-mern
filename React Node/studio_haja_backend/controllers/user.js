@@ -171,7 +171,6 @@ exports.deleteMessage = async (req, res, next) => {
 exports.getMessagesByUserId = async (req, res, next) => {
   const userId = req.params.uid
 
-  // let places;
   let userWithMessages
   try {
     userWithMessages = await User.findById(userId).populate('messages')
@@ -183,7 +182,7 @@ exports.getMessagesByUserId = async (req, res, next) => {
     return next(error)
   }
 
-  // if (!places || places.length === 0) {
+  // if (!messages || messages.length === 0) {
   if (!userWithMessages || userWithMessages.messages.length === 0) {
     return next(
       new HttpError('Could not find messages for the provided user id.', 404)
@@ -191,7 +190,7 @@ exports.getMessagesByUserId = async (req, res, next) => {
   }
 
   res.json({
-    places: userWithMessages.messages.map(message =>
+    messages: userWithMessages.messages.map(message =>
       message.toObject({ getters: true })
     )
   })
