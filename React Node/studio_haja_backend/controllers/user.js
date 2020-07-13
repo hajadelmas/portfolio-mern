@@ -9,7 +9,6 @@ const fs = require('fs')
 const message = require('../models/message')
 
 // S'INSCRIRE
-// il s'agit d'une fonction asynchrone qui renvoie une Promise dans laquelle nous recevons le hash généré ;
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10) // on appel la fonction de hashage et demander de "saler" 10 fois, plus c'est long plus c'est securisé.
     .then(hash => { // bloc then = creation  d'un utilisateur ou error
@@ -134,16 +133,6 @@ exports.deleteMessage = async (req, res, next) => {
     return next(error)
   }
 
-  // if (message.author.id !== req.userData.userId) {
-  //   const error = new HttpError(
-  //     'You are not allowed to delete this message.',
-  //     401
-  //   )
-  //   return next(error)
-  // }
-
-  // const imagePath = message.image
-
   try {
     const sess = await mongoose.startSession()
     sess.startTransaction()
@@ -158,10 +147,6 @@ exports.deleteMessage = async (req, res, next) => {
     )
     return next(error)
   }
-
-  // fs.unlink(imagePath, err => {
-  //   console.log(err)
-  // })
 
   res.status(200).json({ message: 'Deleted message.' })
 }
@@ -194,4 +179,89 @@ exports.getMessagesByUserId = async (req, res, next) => {
       message.toObject({ getters: true })
     )
   })
+}
+
+// GET ALL MESSAGES
+
+exports.getAllMessages = async (req, res, next) => {
+  let messages
+  try {
+    messages = await Message.find()
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not find a message.',
+      500
+    )
+    return next(error)
+  }
+
+  if (!messages) {
+    const error = new HttpError(
+      'Could not find messages.',
+      404
+    )
+    return next(error)
+  }
+
+  res.json({ messages })
+}
+
+// GET ONE MESSAGE
+
+exports.getOneMessage = async (req, res, next) => {
+  const messageId = req.params.mid
+
+  let message
+  try {
+    message = await Message.findById(messageId)
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not find a message.',
+      500
+    )
+    return next(error)
+  }
+
+  if (!message) {
+    const error = new HttpError(
+      'Could not find message for the provided id.',
+      404
+    )
+    return next(error)
+  }
+
+  res.json({ message: message.toObject({ getters: true }) })
+}
+
+// UPDATE MESSAGE
+
+exports.updateMessage = async (req, res, next) => {
+  // const { title, message } = req.body
+  const messageId = req.params.mid
+
+  let messageUpdate
+  try {
+    messageUpdate = await Message.findById(messageId)
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update message. 1',
+      500
+    )
+    return next(error)
+  }
+
+  messageUpdate.title = req.body.title
+  messageUpdate.message = req.body.message
+
+  try {
+    await messageUpdate.save()
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update message. 2',
+      500
+    )
+    return next(error)
+  }
+
+  res.status(200).json({ messages: messageUpdate.toObject({ getters: true }) })
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { TextInput, Button } from 'react-materialize'
+import API from '../utils/API'
+import AdminMessages from './AdminMessages'
 
 export default class Admin extends Component {
   constructor (props) {
@@ -10,7 +12,8 @@ export default class Admin extends Component {
       email: '',
       password: '',
       username: '',
-      registrationErrors: ''
+      registrationErrors: '',
+      allMessages: []
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,6 +24,21 @@ export default class Admin extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  componentDidMount () {
+    const fetchMessages = () => {
+      try {
+        const responseData = axios.get(
+          'http://localhost:3001/user/message/all'
+          , { headers: API.authHeader() })
+          // .then(res => console.log(res.data))
+          .then(res => {
+            this.setState({ allMessages: res.data.messages })
+          })
+      } catch (err) {}
+    }
+    fetchMessages()
   }
 
   handleSubmit (event) {
@@ -47,45 +65,61 @@ export default class Admin extends Component {
   }
 
   render () {
+    const { allMessages } = this.state
+
     return (
-      <div>
+      <div className='adminGeneral'>
         <div className='adminTitle'>
           <h1>Administration</h1>
-          <h3>Enregistrer un client</h3>
         </div>
 
-        <form onSubmit={this.handleSubmit}>
-          <div className='adminForm'>
-            <TextInput
-              label='Email'
-              type='email'
-              name='email'
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
+        <div className='adminContainer'>
+          <div className='adminRegister'>
+            <h3>Enregistrer un client</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className='adminForm'>
+                <TextInput
+                  label='Email'
+                  type='email'
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                />
 
-            <TextInput
-              label='Mot de passe'
-              type='password'
-              name='password'
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
+                <TextInput
+                  label='Mot de passe'
+                  type='password'
+                  name='password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                />
 
-            <TextInput
-              label='Nom utilisateur'
-              type='text'
-              name='username'
-              value={this.state.username}
-              onChange={this.handleChange}
-              required
-            />
+                <TextInput
+                  label='Nom utilisateur'
+                  type='text'
+                  name='username'
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  required
+                />
 
-            <Button type='submit'>Enregistrer le client</Button>
+                <Button type='submit'>Enregistrer le client</Button>
+              </div>
+            </form>
           </div>
-        </form>
+
+          <div className='adminDisplayMessage'>
+            <h3>Messages reçues</h3>
+            <ul>
+              {allMessages.map((message, key) => (
+                <AdminMessages key={key} id={message._id} title={message.title} message={message.message} username={message.author} />
+              ))}
+            </ul>
+          </div>
+        </div>
+
       </div>
     )
   }

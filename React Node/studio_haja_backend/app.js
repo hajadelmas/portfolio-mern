@@ -6,7 +6,6 @@ const cors = require('cors')
 
 const nodemailer = require('nodemailer')
 
-const stuffRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user')
 
 // connexion à MongoDB via mongoose avec id et password
@@ -20,24 +19,11 @@ mongoose.connect('mongodb+srv://loic_delmas_33:Teahupo97421@cluster0-ybnth.mongo
 
 const app = express()
 
-// // pour EVITER l'erreur CORS qui empeche de relier differents serveurs, les 3000 et 4200 ici.
-// // "app.use" => sur toutes les routes de l'application.
-// app.use((req, res, next) => {
-//   // d'accéder à notre API depuis n'importe quelle origine
-//   res.setHeader('Access-Control-Allow-Origin', '*')
-//   // d'ajouter les headers mentionnés aux requêtes envoyées vers notre API
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
-//   // d'envoyer des requêtes avec les méthodes mentionnées
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-//   next()
-// })
-
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/images', express.static(path.join(__dirname, 'images')))
-app.use('/api/stuff', stuffRoutes)
 app.use('/user', userRoutes)
 
 app.use((error, req, res, next) => {

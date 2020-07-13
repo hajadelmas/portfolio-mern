@@ -39,7 +39,6 @@ class Login extends Component {
       .then(response => {
         console.log('login ok', response)
         localStorage.setItem('user', JSON.stringify(response.data))
-        // localStorage.setItem('token', response.data.token)
         window.location = '/dashboard'
       })
       .catch(error => {

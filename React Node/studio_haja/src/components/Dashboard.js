@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextInput, Button, Textarea} from 'react-materialize'
+import { TextInput, Button} from 'react-materialize'
 import API from '../utils/API'
 import axios from 'axios'
 import Messages from './Messages'
@@ -38,25 +38,25 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    // GET INFOS FROM TOKEN
-    axios.get(`http://localhost:3001/user/message/user/${this.state.currentUser.userId}`, { headers: API.authHeader() })
-      .then(res => { console.log(res) })
-      
-      .then((messages => {
-        // const allMessages = userWithMessages.messages
-        this.setState({ usersMessages: messages })
-        console.log(messages)
+      const fetchMessages = () => {
+        try {
+          const responseData = axios.get(
+            `http://localhost:3001/user/message/user/${this.state.currentUser.userId}`
+          ,{ headers: API.authHeader() } )
+          // .then(res =>  console.log(res.data) )
+          .then(res => {
+            this.setState({ usersMessages: [...res.data.messages] })
+          })
+          
+        } catch (err) {}
+      };
+      fetchMessages()
 
-      }))
-      
-      .catch(err => { console.log(err) })
-      
-    
   }
 
-  // POST MESSAGE WITH THE GOOD ID OF CURRENT USER CONNECTED BY TOKEN ?
+
   handleSend (e) {
-     e.preventDefault()
+    //  e.preventDefault()
 
     const { title, message } = this.state
     const UserId = API.getCurrentUser().userId
@@ -90,9 +90,12 @@ class Dashboard extends Component {
 
     return (
       <div>
-
-        <div className='backBlue'/>
-        <img src={logoSVGBlanc} className='logo1' alt='' />
+        
+        <div className='fixeSide'>
+          <div className='backBlue'/>
+          <img src={logoSVGBlanc} className='logo1' alt='' />
+        </div>
+        
         
         <div className='dashboard'>
             <div className='userSpace'>
@@ -101,8 +104,11 @@ class Dashboard extends Component {
             </div>
             
             <h1>Votre espace</h1>
-            <h3>Ecrire un message</h3>
-            <div>
+
+            <div className='messageContainer'>
+              <div className='sendMessage'>
+              <h3>Ecrire un message</h3>
+            
               <form onSubmit={this.handleSend} className='createMessageForm'>
               <TextInput
                 label='titre'
@@ -132,16 +138,25 @@ class Dashboard extends Component {
               /> */}
 
               <Button type='submit'>Envoyer</Button>
-            </form>
+              </form>
+              </div>
+
+              <div className='displayMessage'>
+                <h3>Messages envoyés</h3>
+                
+                <ul>
+                  {usersMessages.map(message => (
+                    <Messages key={message.id} id={message.id} title={message.title} message={message.message}></Messages>
+                  ))}
+                </ul>
+              </div>
+
             </div>
 
-            <h3>Messages envoyés</h3>
+            
 
-            {/* <ul>
-            {usersMessages.map(message => (
-              <Messages key={message.id} id={message.id} title={message.title}>{message.message}</Messages>
-            ))}
-            </ul> */}
+            
+            
             
         </div>
       </div>

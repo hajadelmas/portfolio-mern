@@ -7,7 +7,7 @@ class Main extends Component {
 
   render () {
     return (
-      <div>
+      <div className='overflowWave'>
         <div className='sentence'>
           <p><span>&lt;</span> La seule <span>identitée</span> de votre site, c'est la vôtre. <span>/&gt;</span></p>
         </div>

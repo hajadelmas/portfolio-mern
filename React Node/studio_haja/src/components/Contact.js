@@ -36,6 +36,8 @@ class Contact extends Component {
       message
     })
 
+    console.log(form)
+
     this.setState({ name:'', email:'', tel:'', message:'' })
 
 

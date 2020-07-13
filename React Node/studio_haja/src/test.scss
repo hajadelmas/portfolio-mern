@@ -22,7 +22,7 @@ span {
     top : 0px;
     left: 0px;
     cursor: pointer;
-    // z-index: -1;
+    z-index: -1;
 }
 
 .connect {
@@ -218,7 +218,7 @@ span {
     color: #27345C;
     position: absolute;
     width: 57.8125vw;
-    top: 35vh;
+    top: 30vh;
     left: 50%;
     transform: translate(-50%);
     text-align: center;
@@ -246,7 +246,7 @@ span {
     color: #27345C;
     position: absolute;
     width: 57.8125vw;
-    top: 20vh;
+    top: 15vh;
     left: 21.09375vw;
     text-align: center;
 
@@ -315,10 +315,10 @@ button {
 }
 
 .titres {
-    border: 2px solid #6FFFE9;
-    width: 250px;
+    border: 0.4vh solid #6FFFE9;
+    width: 20.078125vw;
     position: relative;
-    height: 350px;
+    height: 50vh;
 }
 
 .titresBack {
@@ -349,7 +349,7 @@ button {
     color: #27345C;
     position: absolute;
     width: 57.8125vw;
-    top: 20vh;
+    top: 15vh;
     left: 21.09375vw;
     text-align: center;
 
@@ -716,14 +716,43 @@ button {
 // ---------------------- MOBILE -------------------------------
 
 @media (min-width: 310px) and (max-width: 480px) {
-    .mobile {
-        
+    .connect {
+        display: none;
     }
-    .mobile_1 {
-        
+    .menu1 {
+        // display: none;
     }
+    .logo1 {
+        height: 80vh;
+        top: -2%;
+        left: -8%;
+    }
+    .sentence {
+        font-size: 5.5vw;
+        top: 40vh;
+    }
+    .sentenceContact {
+        font-size: 5.5vw;
+    }
+    .portfolio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .imagesTitres {
+        img {
+            width: 100%;
+        }
+    }
+    .titres {
+        height: 50%;
+    }
+
+
 }
 
 @media screen and (min-width: 1024px) {
-    
+    .SideNavButton {
+        display: none;
+    }
 }

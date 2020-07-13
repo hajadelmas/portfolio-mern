@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import imgsite from '../assets/imgsite4.png'
 import siteBen from '../assets/siteBen.png'
+import { ExternalLink } from 'react-external-link'
+
 
 class Portfolio extends Component {
   constructor () {
@@ -29,7 +31,9 @@ class Portfolio extends Component {
           <div className='titres'>
             <div className='titresBack'>
               <div className='hvr-forward' onMouseOver={() => this.showImage(0)}>Hello</div>
-              <div className='hvr-forward' onMouseOver={() => this.showImage(1)}>Ben-Art</div>
+              <div className='hvr-forward' onMouseOver={() => this.showImage(1)}>
+                <ExternalLink href='http://www.benm-art.com' className='titreLink'>Benm-Art</ExternalLink>
+              </div>
             </div>
           </div>
 
@@ -40,6 +44,7 @@ class Portfolio extends Component {
 
         </div>
       </>
+
     )
   }
 }
