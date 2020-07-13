@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer')
 const userRoutes = require('./routes/user')
 
 // connexion à MongoDB via mongoose avec id et password
-mongoose.connect('mongodb+srv://loic_delmas_33:Teahupo97421@cluster0-ybnth.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
