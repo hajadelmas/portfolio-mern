@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "client": "cd studio_haja && npm start",
     "server": "nodemon server",
-    "dev": "concurrently \"npm run server\" \"cd ./studio_haja && npm start\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd studio_haja && npm install && npm run build"
 
   },
