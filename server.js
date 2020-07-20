@@ -102,15 +102,20 @@ app.use(mongoSanitize())
 app.use(xss())
 
 // SECURITY END ------
+app.use(bodyParser.json())
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(express.static(path.join(__dirname, 'studio_haja/build')))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use('/user', userRoutes)
+
+app.use((req, res, next) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 
 app.use((error, req, res, next) => {
   if (req.file) {
@@ -161,9 +166,7 @@ app.post('/api/form', (req, res) => {
   })
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/studio_haja/build/index.html'))
-})
+
 
 // app.use(express.static(path.join(__dirname, 'studio_haja/build')))
 // app.get('/', (req, res) => {
