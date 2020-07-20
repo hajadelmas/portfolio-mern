@@ -236,7 +236,6 @@ exports.getOneMessage = async (req, res, next) => {
 // UPDATE MESSAGE
 
 exports.updateMessage = async (req, res, next) => {
-  // const { title, message } = req.body
   const messageId = req.params.mid
 
   let messageUpdate

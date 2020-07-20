@@ -13,7 +13,8 @@ export default class Admin extends Component {
       password: '',
       username: '',
       registrationErrors: '',
-      allMessages: []
+      allMessages: [],
+      isAdmin: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -67,60 +68,84 @@ export default class Admin extends Component {
   render () {
     const { allMessages } = this.state
 
-    return (
-      <div className='adminGeneral'>
-        <div className='adminTitle'>
-          <h1>Administration</h1>
-        </div>
+    if (this.state.isAdmin === 'hajadel') {
+      return (
 
-        <div className='adminContainer'>
-          <div className='adminRegister'>
-            <h3>Enregistrer un client</h3>
-            <form onSubmit={this.handleSubmit}>
-              <div className='adminForm'>
-                <TextInput
-                  label='Email'
-                  type='email'
-                  name='email'
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  required
-                />
+        <div className='adminGeneral'>
 
-                <TextInput
-                  label='Mot de passe'
-                  type='password'
-                  name='password'
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  required
-                />
-
-                <TextInput
-                  label='Nom utilisateur'
-                  type='text'
-                  name='username'
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                  required
-                />
-
-                <Button type='submit'>Enregistrer le client</Button>
-              </div>
-            </form>
+          <div className='adminTitle'>
+            <h1>Administration</h1>
           </div>
 
-          <div className='adminDisplayMessage'>
-            <h3>Messages reçues</h3>
-            <ul>
-              {allMessages.map((message, key) => (
-                <AdminMessages key={key} id={message._id} title={message.title} message={message.message} username={message.author} />
-              ))}
-            </ul>
-          </div>
-        </div>
+          <div className='adminContainer'>
+            <div className='adminRegister'>
+              <h3>Enregistrer un client</h3>
+              <form onSubmit={this.handleSubmit}>
+                <div className='adminForm'>
+                  <TextInput
+                    label='Email'
+                    type='email'
+                    name='email'
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    required
+                  />
 
-      </div>
-    )
+                  <TextInput
+                    label='Mot de passe'
+                    type='password'
+                    name='password'
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    required
+                  />
+
+                  <TextInput
+                    label='Nom utilisateur'
+                    type='text'
+                    name='username'
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    required
+                  />
+
+                  <Button type='submit'>Enregistrer le client</Button>
+                </div>
+              </form>
+            </div>
+
+            <div className='adminDisplayMessage'>
+              <h3>Messages reçues</h3>
+              <ul>
+                {allMessages.map((message, key) => (
+                  <AdminMessages key={key} id={message._id} title={message.title} message={message.message} username={message.author} />
+                ))}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      )
+    } else {
+      return (
+        <div className='adminPass'>
+          <div className='adminPass_container'>
+            <h2>
+              Admin, c'est toi ?
+            </h2>
+            <TextInput
+              className='adminPass_input'
+              label='ADMIN PASS'
+              type='password'
+              name='isAdmin'
+              value={this.state.isAdmin}
+              onChange={this.handleChange}
+            />
+          </div>
+
+
+        </div>
+      )
+    }
   }
 }

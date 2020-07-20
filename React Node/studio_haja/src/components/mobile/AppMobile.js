@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-// import Navbar from 'react-bootstrap/Navbar'
-// import Nav from 'react-bootstrap/Nav'
-// import NavDropdown from 'react-bootstrap/NavDropdown'
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Fade from 'react-reveal/Fade'
-import logoMobile from '../../assets/logo_haja_mobile.png'
+import logoMobile from '../../assets/logo_haja_mobile_solo.svg'
+import MobileCarousel from './MobileCarousel'
+import MobileOffres from './MobileOffres'
+import IMG_2235 from '../../assets/moi.JPG'
+import Carousel from '../Carousel'
+
+import MobileContact from './Mobilecontact'
+
 
 
 class AppMobile extends Component {
@@ -14,36 +16,46 @@ class AppMobile extends Component {
     return (
       <div className='mobile'>
 
-        <Fade>
-
-          <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
-            <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-            <Navbar.Collapse id='responsive-navbar-nav'>
-              <Nav className='mr-auto'>
-                <Nav.Link href='#features'>Features</Nav.Link>
-                <Nav.Link href='#pricing'>Pricing</Nav.Link>
-                <NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
-                  <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-                  <NavDropdown.Item href='#action/3.2'>Another action</NavDropdown.Item>
-                  <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-              <Nav>
-                <Nav.Link href='#deets'>More deets</Nav.Link>
-                <Nav.Link eventKey={2} href='#memes'>
-                Dank memes
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+        <Fade left>
 
           <div className='mobile_1'>
-            salut
-            {/* <img src={logoMobile} class='logo1' alt='' /> */}
+            <img src={logoMobile} class='logo1' alt='' />
+            <div className='sentenceMobile'>
+              <p><span>&lt;</span> La seule <span>identitée</span> de votre site, c'est la vôtre. <span>/&gt;</span></p>
+
+              <i className='fas fa-chevron-down mobileArrow' />
+            </div>
           </div>
+
+          <div className='mobile_2'>
+
+            <div className='sentenceMobileTitle'>
+              <p><span>&lt;</span> Portfolio <span>/&gt;</span></p>
+            </div>
+
+            <MobileCarousel />
+          </div>
+
+          <div className='mobile_3'>
+            <MobileOffres />
+          </div>
+
+          <div className='mobile_4'>
+            <br />
+            <img src={IMG_2235} alt='' className='photoMe' />
+            <div className='mobileApropos'>
+              <h2><span>&lt;</span> Entrepreneur & Créatif <span>/&gt;</span></h2>
+              <p>C’est d’abord dans la communication et la création d’une première agence à 22 ans que j’ai établis mon premier contact avec la création de site internet.</p>
+              <p>Peu d’années plus tard, c’est en tant que développeur/ concepteur que je souhaites partager cette passion.</p>
+              {/* <h2><span>&lt;</span> Compétences <span>/&gt;</span></h2> */}
+            </div>
+            {/* <Carousel /> */}
+          </div>
+
+          <div className='mobile_5'>
+            <MobileContact />
+          </div>
+
         </Fade>
       </div>
     )

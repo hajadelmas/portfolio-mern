@@ -255,6 +255,9 @@ span {
 .formContact {
     display: flex;
     flex-direction: column;
+    input {
+        width: 100%;
+    }
 }
 
 label {
@@ -265,12 +268,14 @@ label {
 }
 
 input {
-    width: 15%;
+    // width: 100%;
     margin-top: 1.0660980810234542vh;
     margin-bottom: 1.0660980810234542vh;
     margin-left: 3.90625vw;
     background-color: inherit;
     font-size: 1.5625vw;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
     color: #27345C;
 }
 
@@ -306,7 +311,7 @@ button {
 .portfolio {
     position: absolute;
     top: 42vh;
-    left: 50%;
+    left: 15%;
     transform: translate(-50%);
     width: 70%;
     display: flex;
@@ -338,6 +343,9 @@ button {
     font-weight: 700;
     color: #F9CECE;
     background-color: white;
+    
+    
+    
 }
 
 /*-------------------------- A propos ----------------------------*/
@@ -358,7 +366,7 @@ button {
 .apropos_zone {
     position: absolute;
     top: 37vh;
-    left: 50%;
+    left: 15%;
     transform: translate(-50%);
     width: 70%;
     display: flex;
@@ -407,7 +415,7 @@ button {
     font-family: 'Inter', sans-serif;
     position: absolute;
     top: 35vh;
-    left: 50%;
+    left: 15%;
     transform: translate(-50%);
     width: 70%;
     height: 60%;
@@ -486,6 +494,33 @@ button {
 
 /*------------------ADMIN------------------------*/
 
+.adminPass {
+    position: absolute;
+    z-index: 99999999;
+    margin: 0;
+    background-color: #FBC8C8;
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.adminPass_container {
+    margin-top: 3%;
+    margin-left: 2%;
+    h2 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 900;
+        font-size: 10vw;
+        color: white;
+    }
+}
+
+.adminPass_input {
+    input {
+        width: 20%;
+    }
+}
+
 .adminGeneral {
     font-family: 'Inter', sans-serif;
     color: #FBC8C8;
@@ -561,6 +596,9 @@ button {
 
 .loginForm {
     width: 30%;
+    input {
+        width: 70%;
+    }
 }
 
 .loginTitle {
@@ -716,12 +754,172 @@ button {
 // ---------------------- MOBILE -------------------------------
 
 @media (min-width: 310px) and (max-width: 480px) {
+    * {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+    }
     .mobile {
         
     }
     .mobile_1 {
+        position: relative;
+        height: 100vh;
+        .logo1 {
+            width: 100%;
+        }
+        .sentenceMobile {
+            position: absolute;
+            top: 45%;
+            font-size: 8vw;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #27345C;
+            text-align: center;
+        }
+        .mobileArrow {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            margin-top: 40%;
+            font-size: 8vw;
+            color: #FAC1C1;
+            animation: bounce 2s ease infinite;
+            
+        }
+        @keyframes bounce {
+            from {top: 80px;}
+            50% {top: 60px;}
+            to {top: 80px;}
+        }
         
     }
+
+    .mobile_2 {
+        position: relative;
+        padding-top: 10%;
+        height: 100vh;
+        background-color: #FAC1C1;
+        .MobileslideSkills {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+
+            img {
+                max-width: 100%;
+            }
+        }
+        .MobileCarouselText {
+            h2 {
+                margin-top: 20%;
+                font-size: 7vw;
+                font-weight: 900;
+                color: white;
+                text-align: center;
+            }
+            
+        }
+        .sentenceMobileTitle {
+            font-size: 11vw;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            span {
+                color: white;
+            }
+        }
+    }
+
+    .mobile_3 {
+        background-color: #27345C;
+        height: 100vh;
+        position: relative;
+        color: #FAC1C1;
+        text-align: center;
+        padding-top: 10%;
+        .mobileOffre {
+            h1 {
+                font-size: 6vw;
+                font-weight: 900;
+                margin: 0;
+            }
+            .mobileOffre_container_1 {
+                margin-top: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .mobileOffre_container_2 {
+                font-weight: 700;
+                width: 70%;
+                margin-top: 10%;
+                .icons {
+                    font-size: 10vw;
+                    margin-bottom: 5%;
+                }
+            }
+        }
+    }
+
+    .mobile_4 {
+        background-color: #FAC1C1;
+        height: 100vh;
+        .photoMe {
+            width: 50%;
+            border-radius: 100%;
+            border: 10px solid #27345C ;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .mobileApropos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            h2 {
+                font-size: 6vw;
+                font-weight: 700;
+            }
+            p {
+                font-size: 4vw;
+                font-weight: 400;
+                width: 70%;
+            }
+            span {
+                color: white;
+            }
+        }
+        .slideSkills {
+            width: 100%;
+            img {
+                max-width: 20%;
+            }
+        }
+    }
+
+    .mobile_5 {
+        background-color: white;
+        height: 100vh;
+        text-align: center;
+        padding-top: 20%;
+        .mobileContact_title {
+            font-size: 11vw;
+            font-weight: 900;
+            margin-bottom: 20%;
+        }
+        .mobileContact_input {
+            width: 50%;
+            
+        }
+        .mobileContact_area {
+            h2 {
+                font-size: 7vw;
+                font-weight: 700;
+                color: #FAC1C1;
+            }
+        }
+    }
+
 }
 
 @media screen and (min-width: 1024px) {

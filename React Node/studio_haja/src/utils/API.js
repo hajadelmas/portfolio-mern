@@ -6,6 +6,10 @@ export default {
     return localStorage.getItem('user') !== null
   },
 
+  isAdmin: function () {
+    return localStorage.getItem('role: admin') !== null
+  },
+
   authHeader: function () {
     const user = JSON.parse(localStorage.getItem('user'))
 

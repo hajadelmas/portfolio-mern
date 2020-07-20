@@ -3,9 +3,15 @@ const bodyParser = require('body-parser') // transforme le corps de la requete e
 const mongoose = require('mongoose')
 const path = require('path') // acceder au chemin pour multer post
 const cors = require('cors')
+const rateLimit = require('express-rate-limit')
+const helmet = require('helmet')
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
 
+// Noddemailer
 const nodemailer = require('nodemailer')
 
+// Routes
 const userRoutes = require('./routes/user')
 
 // connexion à MongoDB via mongoose avec id et password
@@ -18,6 +24,30 @@ mongoose.connect('',
   .catch(() => console.log('Connexion à MongoDB échouée !'))
 
 const app = express()
+
+// SECURITY ----------
+
+// Helmet
+app.use(helmet())
+
+// Rate Limiting
+const limit = rateLimit({
+  max: 100, // max requests
+  windowMs: 60 * 60 * 1000, // 1 Hour of 'ban' / lockout
+  message: 'Too many requests' // message to send
+})
+app.use('/routeName', limit) // Setting limiter on specific route
+
+// Body Parser
+app.use(express.json({ limit: '10kb' })) // Body limit is 10
+
+// Data Sanitization against NoSQL Injection Attacks
+app.use(mongoSanitize())
+
+// Data Sanitization against XSS attacks
+app.use(xss())
+
+// SECURITY END ------
 
 app.use(cors())
 app.use(bodyParser.json())

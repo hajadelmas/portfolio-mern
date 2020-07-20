@@ -3,6 +3,8 @@ import axios from 'axios'
 import { TextInput, Button } from 'react-materialize'
 import { Link } from 'react-router-dom'
 
+import Fade from 'react-reveal/Fade'
+
 class Login extends Component {
   constructor (props) {
     super(props)
@@ -50,38 +52,41 @@ class Login extends Component {
   render () {
     return (
       <div>
-        <div className='loginConnect'>
+        <Fade>
+          <div className='loginConnect'>
 
-          <Link to='/' className='loginCross'><i class='fas fa-times' /></Link>
+            <Link to='/' className='loginCross'><i class='fas fa-times' /></Link>
 
-          <div className='loginTitle'>
+            <div className='loginTitle'>
             Votre espace pour ne plus se sentir seul(e).
+            </div>
+
+            <div className='loginForm'>
+              <form onSubmit={this.handleSubmit}>
+                <TextInput
+                  label='Email'
+                  type='email'
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                />
+
+                <TextInput
+                  label='Mot de passe'
+                  type='password'
+                  name='password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                />
+
+                <Button type='submit'>Se connecter</Button>
+              </form>
+            </div>
           </div>
+        </Fade>
 
-          <div className='loginForm'>
-            <form onSubmit={this.handleSubmit}>
-              <TextInput
-                label='Email'
-                type='email'
-                name='email'
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
-
-              <TextInput
-                label='Mot de passe'
-                type='password'
-                name='password'
-                value={this.state.password}
-                onChange={this.handleChange}
-                required
-              />
-
-              <Button type='submit'>Se connecter</Button>
-            </form>
-          </div>
-        </div>
 
       </div>
     )

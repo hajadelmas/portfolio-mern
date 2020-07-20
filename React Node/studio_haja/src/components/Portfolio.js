@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import imgsite from '../assets/imgsite4.png'
 import siteBen from '../assets/siteBen.png'
 import { ExternalLink } from 'react-external-link'
+import Fade from 'react-reveal/Fade'
+
 
 
 class Portfolio extends Component {
@@ -22,7 +24,7 @@ class Portfolio extends Component {
     const { showImageCount } = this.state
 
     return (
-      <>
+      <Fade left>
         <div className='sentenceContact'>
           <p><span>&lt;</span> Portfolio <span>/&gt;</span></p>
         </div>
@@ -32,7 +34,7 @@ class Portfolio extends Component {
             <div className='titresBack'>
               <div className='hvr-forward' onMouseOver={() => this.showImage(0)}>Hello</div>
               <div className='hvr-forward' onMouseOver={() => this.showImage(1)}>
-                <ExternalLink href='http://www.benm-art.com' className='titreLink'>Benm-Art</ExternalLink>
+                <ExternalLink href='http://www.benm-art.com' className='titreLink' style={{ textDecoration: 'none', color: 'inherit' }}>Benm-Art</ExternalLink>
               </div>
             </div>
           </div>
@@ -43,7 +45,7 @@ class Portfolio extends Component {
           </div>
 
         </div>
-      </>
+      </Fade>
 
     )
   }

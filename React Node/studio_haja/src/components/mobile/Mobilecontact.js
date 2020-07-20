@@ -3,10 +3,8 @@ import axios from 'axios'
 
 import 'materialize-css'
 import { TextInput, Textarea, Button, Modal } from 'react-materialize'
-import Fade from 'react-reveal/Fade'
 
-
-class Contact extends Component {
+class MobileContact extends Component {
   constructor() {
     super()
 
@@ -51,16 +49,16 @@ class Contact extends Component {
 
   render () {
     return (
-      <Fade left>
-        <div className='sentenceContact'>
+      <>
+        <div className='mobileContact_title'>
           <p><span>&lt;</span> Contact <span>/&gt;</span></p>
         </div>
 
-        <form action='' id='clearForm' className='contact' onSubmit={this.handleSubmit}>
+        <form action='' id='clearForm' className='' onSubmit={this.handleSubmit}>
 
           
 
-          <div className='formContact'>
+          <div className='mobileContact_input'>
 
             <TextInput id='TextInput-4' label='Nom & Prénom *' name='name' onChange={this.handleChange} value={this.state.name}/>
             <TextInput id='TextInput-4' label='Mail*' name='email' email validate onChange={this.handleChange} value={this.state.email}/>
@@ -68,11 +66,11 @@ class Contact extends Component {
 
           </div>
 
-          <div className='textareaContact'>
-            <label for='demande'>Votre demande*</label>
+          <div className='mobileContact_area'>
+            <h2 for='demande' className=''>Votre demande*</h2>
 
             <Textarea
-              data-length={120}
+              data-length={400}
               id="demande mainInput"
               label="Ecrire ici ..."
               onChange={this.handleChange}
@@ -124,10 +122,9 @@ class Contact extends Component {
         
 
 
-        <div className='bandeRose' />
-      </Fade>
+      </>
     )
   }
 }
 
-export default Contact
+export default MobileContact

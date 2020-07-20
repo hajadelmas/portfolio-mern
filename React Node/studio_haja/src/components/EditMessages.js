@@ -66,8 +66,6 @@ class EditMessages extends Component {
   }
 
   handleDelete = () => {
-    // const deleteId = this.props.match.params.idMessage
-    // console.log(this.state.messageId)
 
     axios.delete(`http://localhost:3001/user/message/delete/${this.state.messageId}`)
       .then(res => {

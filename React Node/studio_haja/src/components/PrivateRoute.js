@@ -9,6 +9,8 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
     render={(props) => {
       if (API.isAuth() === false) {
         return <Redirect to='/login' />
+      } else if (API.isAdmin() === true) {
+        return <Redirect to='/admin' />
       } else {
         return <Component {...props} />
       }
