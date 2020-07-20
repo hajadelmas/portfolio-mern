@@ -8,7 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server",
     "dev": "concurrently \"npm run server\" \"cd ./studio_haja && npm start\"",
-    "heroku-postbuild": "cd studio_haja && npm install npm && run build"
+    "heroku-postbuild": "cd studio_haja && npm install && npm run build"
 
   },
   "author": "",

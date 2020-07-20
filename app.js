@@ -24,6 +24,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://loic_delmas_33:Teahup
   .catch(() => console.log('Connexion à MongoDB échouée !'))
 
 const app = express()
+app.use(express.static(path.join(__dirname, './studio_haja/build')))
 
 // SECURITY ----------
 
@@ -50,12 +51,10 @@ app.use(xss())
 // SECURITY END ------
 
 // BUILD
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, './studio_haja/build')))
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './studio_haja', 'build', 'index.html'))
-  })
-}
+// if (process.env.NODE_ENV === 'production') {
+  // app.use(express.static(path.join(__dirname, './studio_haja/build')))
+  
+// }
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -111,6 +110,10 @@ app.post('/api/form', (req, res) => {
     }
     return console.log('Email envoyé!!!')
   })
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './studio_haja/build/index.html'))
 })
 
 module.exports = app
