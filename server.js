@@ -164,12 +164,12 @@ app.post('/api/form', (req, res) => {
 
   const mailTransporter = nodemailer.createTransport(sgTransport({
     auth: {
-      api_key: process.env.ADMIN_EMAIL_API_KEY
+      api_key: process.env.SENDGRID_API_KEY
     }
   }))
 
   mailTransporter.sendMail({
-    from: '"Admin" app178427689@heroku.com',
+    from: 'studio.haja.bdx@gmail.com',
     to: 'loic.developpeur.bdx@gmail.com',
     replyTo: 'studio.haja.bdx@gmail.com',
     subject: 'Message Studio Haja',
