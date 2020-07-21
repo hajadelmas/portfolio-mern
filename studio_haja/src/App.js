@@ -7,7 +7,7 @@ import Portfolio from './components/Portfolio'
 import Offres from './components/Offres'
 import Contact from './components/Contact'
 import Apropos from './components/Apropos'
-// import AppMobile from './components/mobile/AppMobile'
+import AppMobile from './components/mobile/AppMobile'
 
 class App extends Component {
   constructor () {
@@ -53,9 +53,9 @@ class App extends Component {
 
         </div>
 
-        {/* <div className='mobile'>
+        <div className='mobile'>
           <AppMobile />
-        </div> */}
+        </div>
 
       </div>
 
