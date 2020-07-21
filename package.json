@@ -8,7 +8,9 @@
     "start": "node server.js",
     "client": "cd studio_haja && npm start",
     "dev": "nodemon server",
-    "all": "concurrently \"npm run dev\" \"npm run client\""
+    "all": "concurrently \"npm run dev\" \"npm run client\"",
+    "heroku-postbuild": "cd studio_haja && npm install && npm run build"
+
   },
   "author": "",
   "license": "ISC",
