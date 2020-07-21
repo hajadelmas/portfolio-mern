@@ -103,7 +103,7 @@ app.use(xss())
 // SECURITY END ------
 app.use(bodyParser.json())
 
-app.use(express.static(path.join(__dirname, './studio_haja/build')))
+// app.use(express.static(path.join(__dirname, './studio_haja/build')))
 
 app.use(cors())
 
@@ -161,9 +161,9 @@ app.post('/api/form', (req, res) => {
   })
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/studio_haja/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/studio_haja/build/index.html'))
+// })
 
 // app.use(express.static(path.join(__dirname, 'studio_haja/build')))
 // app.get('/', (req, res) => {
