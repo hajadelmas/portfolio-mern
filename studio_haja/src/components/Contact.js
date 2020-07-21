@@ -31,7 +31,7 @@ class Contact extends Component {
 
     const { name, email, tel, message } = this.state
 
-    const form = await axios.post('/api/form', {
+    const form = await axios.post(process.env.REACT_APP_BACKEND_URL_SEND + '/api/form', {
       name,
       email,
       tel,
