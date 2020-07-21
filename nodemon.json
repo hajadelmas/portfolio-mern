@@ -3,6 +3,7 @@
         "DB_USER": "loic_delmas_33",
         "DB_PASSWORD": "Teahupo97421",
         "DB_NAME": "test",
-        "JWT_KEY": "RANDOM_TOKEN_SECRET"
+        "JWT_KEY": "RANDOM_TOKEN_SECRET",
+        "ADMIN_EMAIL_API_KEY": "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"
     }
 }

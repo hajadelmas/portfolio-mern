@@ -138,26 +138,42 @@ app.post('/api/form', (req, res) => {
       <p>${req.body.message}</p>
     `
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
+  // const transporter = nodemailer.createTransport({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: 'studio.haja.bdx@gmail.com',
+  //     pass: 'Teahupo97421'
+  //   }
+  // })
+
+  // const mailOptions = {
+  //   from: 'studio.haja.bdx@gmail.com',
+  //   to: 'loic.developpeur.bdx@gmail.com',
+  //   subject: 'Message Studio Haja',
+  //   text: htmlEmail
+  // }
+
+  // transporter.sendMail(mailOptions, (err, data) => {
+  //   if (err) {
+  //     return console.log('Error')
+  //   }
+  //   return console.log('Email envoyé!!!')
+  // })
+
+  const sgTransport = require('nodemailer-sendgrid-transport')
+
+  const mailTransporter = nodemailer.createTransport(sgTransport({
     auth: {
-      user: 'studio.haja.bdx@gmail.com',
-      pass: 'Teahupo97421'
+      api_key: process.env.ADMIN_EMAIL_API_KEY
     }
-  })
+  }))
 
-  const mailOptions = {
-    from: 'studio.haja.bdx@gmail.com',
+  mailTransporter.sendMail({
+    from: '"Admin" app178427689@heroku.com',
     to: 'loic.developpeur.bdx@gmail.com',
+    replyTo: 'studio.haja.bdx@gmail.com',
     subject: 'Message Studio Haja',
-    text: htmlEmail
-  }
-
-  transporter.sendMail(mailOptions, (err, data) => {
-    if (err) {
-      return console.log('Error')
-    }
-    return console.log('Email envoyé!!!')
+    html: htmlEmail
   })
 })
 
