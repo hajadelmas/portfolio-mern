@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const { JWT_SECRET } = 'RANDOM_TOKEN_SECRET'
+// const { JWT_SECRET } = 'RANDOM_TOKEN_SECRET'
 
 module.exports = function (req, res, next) {
   const token = req.header('x-auth-token')
@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
 
   try {
     // Verify token
-    const decoded = jwt.verify(token, JWT_SECRET)
+    const decoded = jwt.verify(token, process.env.JWT_KEY)
     // Add user from payload
     req.userId = decoded.id
     next()

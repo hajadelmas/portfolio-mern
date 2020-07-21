@@ -31,7 +31,7 @@ class Login extends Component {
 
     axios
       .post(
-        'http://localhost:3001/user/login',
+        process.env.REACT_APP_BACKEND_URL + '/login',
         {
           email: email,
           password: password

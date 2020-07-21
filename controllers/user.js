@@ -41,7 +41,7 @@ exports.login = (req, res, next) => {
             userId: user._id,
             token: jwt.sign( // encoder nouveau token.
               { userId: user._id }, // etre sur qu'il correspond  bien au bon id.
-              'RANDOM_TOKEN_SECRET', // à remplacer par une chaine de carac bcp plus longue.
+              process.env.JWT_KEY, // à remplacer par une chaine de carac bcp plus longue.
               { expiresIn: '24h' } // durée de validité de 24h.
             ),
             username: user.username,

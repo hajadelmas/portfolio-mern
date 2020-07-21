@@ -31,7 +31,7 @@ export default class Admin extends Component {
     const fetchMessages = () => {
       try {
         const responseData = axios.get(
-          'http://localhost:3001/user/message/all'
+          process.env.REACT_APP_BACKEND_URL + '/message/all'
           , { headers: API.authHeader() })
           // .then(res => console.log(res.data))
           .then(res => {
@@ -46,7 +46,7 @@ export default class Admin extends Component {
     const { email, password, username } = this.state
 
     axios
-      .post('http://localhost:3001/user/signup',
+      .post(process.env.REACT_APP_BACKEND_URL + '/signup',
         {
           // user: {
           email: email,

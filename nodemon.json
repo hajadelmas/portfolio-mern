@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DB_USER": "loic_delmas_33",
+        "DB_PASSWORD": "Teahupo97421",
+        "DB_NAME": "test",
+        "JWT_KEY": "RANDOM_TOKEN_SECRET"
+    }
+}

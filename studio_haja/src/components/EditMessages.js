@@ -24,7 +24,7 @@ class EditMessages extends Component {
         // const messageId = this.props.match.params.idMessage
         console.log(this.state.messageId)
         const responseData = axios.get(
-          `http://localhost:3001/user/message/getone/${this.state.messageId}`)
+          `${process.env.REACT_APP_BACKEND_URL}/message/getone/${this.state.messageId}`)
         // .then(res =>  console.log(res.data) )
           .then(res => {
             this.setState({
@@ -50,7 +50,7 @@ class EditMessages extends Component {
 
     const { title, message } = this.state
 
-    axios.put(`http://localhost:3001/user/message/update/${this.state.messageId}`,
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/message/update/${this.state.messageId}`,
       {
         title: title,
         message: message
@@ -67,7 +67,7 @@ class EditMessages extends Component {
 
   handleDelete = () => {
 
-    axios.delete(`http://localhost:3001/user/message/delete/${this.state.messageId}`)
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/message/delete/${this.state.messageId}`)
       .then(res => {
         console.log(res.data)
         window.location = '/admin'

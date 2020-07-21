@@ -8,7 +8,7 @@
     "start": "node server.js",
     "client": "cd studio_haja && npm start",
     "dev": "nodemon server",
-    "all": "concurrently \"npm run server\" \"npm run client\""
+    "all": "concurrently \"npm run dev\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",

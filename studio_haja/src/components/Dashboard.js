@@ -41,7 +41,7 @@ class Dashboard extends Component {
       const fetchMessages = () => {
         try {
           const responseData = axios.get(
-            `http://localhost:3001/user/message/user/${this.state.currentUser.userId}`
+            `${process.env.REACT_APP_BACKEND_URL}/message/user/${this.state.currentUser.userId}`
           ,{ headers: API.authHeader() } )
           // .then(res =>  console.log(res.data) )
           .then(res => {
@@ -64,7 +64,7 @@ class Dashboard extends Component {
 
     axios
       .post(
-        'http://localhost:3001/user/message',
+        process.env.REACT_APP_BACKEND_URL + '/message',
         {
             title: title,
             message: message,
