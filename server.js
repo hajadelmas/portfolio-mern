@@ -138,43 +138,43 @@ app.post('/api/form', (req, res) => {
       <p>${req.body.message}</p>
     `
 
-  // const transporter = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: 'studio.haja.bdx@gmail.com',
-  //     pass: 'Teahupo97421'
-  //   }
-  // })
-
-  // const mailOptions = {
-  //   from: 'studio.haja.bdx@gmail.com',
-  //   to: 'loic.developpeur.bdx@gmail.com',
-  //   subject: 'Message Studio Haja',
-  //   text: htmlEmail
-  // }
-
-  // transporter.sendMail(mailOptions, (err, data) => {
-  //   if (err) {
-  //     return console.log('Error')
-  //   }
-  //   return console.log('Email envoyé!!!')
-  // })
-
-  const sgTransport = require('nodemailer-sendgrid-transport')
-
-  const mailTransporter = nodemailer.createTransport(sgTransport({
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-      api_key: process.env.SENDGRID_API_KEY
+      user: 'studio.haja.bdx@gmail.com',
+      pass: 'Teahupo97421'
     }
-  }))
-
-  mailTransporter.sendMail({
-    from: '"Admin" app178427689@heroku.com',
-    to: 'loic.developpeur.bdx@gmail.com',
-    replyTo: 'studio.haja.bdx@gmail.com',
-    subject: 'Message Studio Haja',
-    html: htmlEmail
   })
+
+  const mailOptions = {
+    from: 'studio.haja.bdx@gmail.com',
+    to: 'loic.developpeur.bdx@gmail.com',
+    subject: 'Message Studio Haja',
+    text: htmlEmail
+  }
+
+  transporter.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      return console.log('Error')
+    }
+    return console.log('Email envoyé!!!')
+  })
+
+  // const sgTransport = require('nodemailer-sendgrid-transport')
+
+  // const mailTransporter = nodemailer.createTransport(sgTransport({
+  //   auth: {
+  //     api_key: process.env.SENDGRID_API_KEY
+  //   }
+  // }))
+
+  // mailTransporter.sendMail({
+  //   from: '"Admin" app178427689@heroku.com',
+  //   to: 'loic.developpeur.bdx@gmail.com',
+  //   replyTo: 'studio.haja.bdx@gmail.com',
+  //   subject: 'Message Studio Haja',
+  //   html: htmlEmail
+  // })
 })
 
 app.get('*', (req, res) => {
