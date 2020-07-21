@@ -160,21 +160,6 @@ app.post('/api/form', (req, res) => {
     return console.log('Email envoyé!!!')
   })
 
-  // const sgTransport = require('nodemailer-sendgrid-transport')
-
-  // const mailTransporter = nodemailer.createTransport(sgTransport({
-  //   auth: {
-  //     api_key: process.env.SENDGRID_API_KEY
-  //   }
-  // }))
-
-  // mailTransporter.sendMail({
-  //   from: '"Admin" app178427689@heroku.com',
-  //   to: 'loic.developpeur.bdx@gmail.com',
-  //   replyTo: 'studio.haja.bdx@gmail.com',
-  //   subject: 'Message Studio Haja',
-  //   html: htmlEmail
-  // })
 })
 
 app.get('*', (req, res) => {
