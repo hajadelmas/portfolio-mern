@@ -169,7 +169,7 @@ app.post('/api/form', (req, res) => {
   }))
 
   mailTransporter.sendMail({
-    from: 'studio.haja.bdx@gmail.com',
+    from: '"Admin" app178427689@heroku.com',
     to: 'loic.developpeur.bdx@gmail.com',
     replyTo: 'studio.haja.bdx@gmail.com',
     subject: 'Message Studio Haja',
