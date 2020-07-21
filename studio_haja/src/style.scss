@@ -762,8 +762,11 @@ button {
         margin: 0;
         font-family: 'Inter', sans-serif;
     }
+    .section {
+        display: none;
+    }
     .mobile {
-        
+        display: initial;
     }
     .mobile_1 {
         position: relative;
@@ -927,5 +930,7 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
-    
+    .mobile {
+        display: none;
+    }
 }
