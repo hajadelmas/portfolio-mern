@@ -38,7 +38,7 @@ class MobileContact extends Component {
 
     console.log(form)
 
-    this.setState({ name:'', email:'', tel:'', message:'' })
+    // this.setState({ name:'', email:'', tel:'', message:'' })
 
 
   }
