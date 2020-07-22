@@ -16,7 +16,7 @@ class MobileContact extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.handleClear = this.handleClear.bind(this)
+    this.handleClear = this.handleClear.bind(this)
   }
   
 
@@ -43,9 +43,9 @@ class MobileContact extends Component {
 
   }
 
-  // handleClear(e) {
-  //   this.setState({ name:'', email:'', tel:'', message:'' })
-  // }
+  handleClear(e) {
+    this.setState({ name:'', email:'', tel:'', message:'' })
+  }
 
   render () {
     return (
@@ -90,7 +90,7 @@ class MobileContact extends Component {
             </Button>
             <Modal
               actions={[
-                <Button flat modal='close' node='button' waves='green'>Fermer</Button>
+                <Button flat modal='close' node='button' waves='green' onClick={this.handleClear}>Fermer</Button>
               ]}
               bottomSheet={false}
               fixedFooter={false}
