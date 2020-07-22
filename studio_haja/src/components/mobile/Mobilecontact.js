@@ -43,9 +43,9 @@ class MobileContact extends Component {
 
   }
 
-  handleClear(e) {
-    this.setState({ name:'', email:'', tel:'', message:'' })
-  }
+  // handleClear(e) {
+  //   this.setState({ name:'', email:'', tel:'', message:'' })
+  // }
 
   render () {
     return (
