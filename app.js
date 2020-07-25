@@ -91,7 +91,7 @@ app.post('/api/form', (req, res) => {
     service: 'gmail',
     auth: {
       user: 'studio.haja.bdx@gmail.com',
-      pass: 'Teahupo97421'
+      pass: 'Teahupo-97421'
     }
   })
 
