@@ -52,9 +52,9 @@ class AppMobile extends Component {
             {/* <Carousel /> */}
           </div>
 
-          <div className='mobile_5'>
+          {/* <div className='mobile_5'>
             <MobileContact />
-          </div>
+          </div> */}
 
         </Fade>
       </div>
