@@ -7,10 +7,12 @@ const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
-const nodemailer = require('nodemailer')
 
 // PORT
 const PORT = process.env.PORT || 3001
+
+// Noddemailer
+const nodemailer = require('nodemailer')
 
 // Routes
 const userRoutes = require('./routes/user')
@@ -59,18 +61,18 @@ app.use(express.static(path.join(__dirname, 'studio_haja/build')))
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use('/user', userRoutes)
 
-// app.use((error, req, res, next) => {
-//   if (req.file) {
-//     fs.unlink(req.file.path, err => {
-//       console.log(err)
-//     })
-//   }
-//   if (res.headerSent) {
-//     return next(error)
-//   }
-//   res.status(error.code || 500)
-//   res.json({ message: error.message || 'An unknown error occurred!' })
-// })
+app.use((error, req, res, next) => {
+  if (req.file) {
+    fs.unlink(req.file.path, err => {
+      console.log(err)
+    })
+  }
+  if (res.headerSent) {
+    return next(error)
+  }
+  res.status(error.code || 500)
+  res.json({ message: error.message || 'An unknown error occurred!' })
+})
 
 // Send Mail
 
@@ -80,7 +82,6 @@ app.post('/api/form', (req, res) => {
       <ul>
         <li>Name: ${req.body.name}</li>
         <li>@mail: ${req.body.email}</li>
-        <li>telephone: ${req.body.tel}</li>
       </ul>
       <h3>Contact Details</3>
       <p>${req.body.message}</p>
@@ -103,7 +104,7 @@ app.post('/api/form', (req, res) => {
 
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
-      return console.log('Erreur avec le mail')
+      return console.log('Error')
     }
     return console.log('Email envoyé!!!')
   })
@@ -112,6 +113,13 @@ app.post('/api/form', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/studio_haja/build/index.html'))
 })
+
+// app.use(express.static(path.join(__dirname, 'studio_haja/build')))
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'studio_haja', 'build', 'index.html'))
+// })
+
+// module.exports = app
 
 app.listen(PORT, () => {
   console.log('Server started on port', PORT)

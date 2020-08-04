@@ -138,28 +138,68 @@ app.post('/api/form', (req, res) => {
       <p>${req.body.message}</p>
     `
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'studio.haja.bdx@gmail.com',
-      pass: 'Teahupo97421'
-    }
-  })
+  // const transporter = nodemailer.createTransport({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: 'studio.haja.bdx@gmail.com',
+  //     pass: 'Teahupo-97421'
+  //   }
+  // })
 
+  // const mailOptions = {
+  //   from: 'studio.haja.bdx@gmail.com',
+  //   to: 'loic.developpeur.bdx@gmail.com',
+  //   subject: 'Message Studio Haja',
+  //   text: htmlEmail
+  // }
+
+  // transporter.sendMail(mailOptions, (err, data) => {
+  //   if (err) {
+  //     return console.log('Error')
+  //   }
+  //   return console.log('Email envoyé!!!')
+  // })
+
+  // const mailgun = require('mailgun-js')
+  // const DOMAIN = 'mg.studio-haja.fr'
+  // const mg = mailgun({ apiKey: '02b1e07327f94c879e8b318961e7f77f-a65173b1-b3b3448d', domain: DOMAIN })
+  // const data = {
+  //   from: 'Excited User <me@samples.mailgun.org>',
+  //   to: 'loic.developpeur.bdx@gmail.com',
+  //   subject: 'Hello',
+  //   text: htmlEmail
+  // }
+  // mg.messages().send(data, function (error, body) {
+  //   console.log(body)
+  // })
+
+  const mailGun = require('nodemailer-mailgun-transport')
+  // Step 1
+  const auth = {
+    auth: {
+      api_key: '02b1e07327f94c879e8b318961e7f77f-a65173b1-b3b3448d',
+      domain: 'mg.studio-haja.fr'
+    }
+  }
+
+  // Step 2
+  const transporter = nodemailer.createTransport(mailGun(auth))
+
+  // Step 3
   const mailOptions = {
-    from: 'studio.haja.bdx@gmail.com',
+    from: 'Excited User <me@samples.mailgun.org>',
     to: 'loic.developpeur.bdx@gmail.com',
-    subject: 'Message Studio Haja',
+    subject: 'Nodemailer - Test',
     text: htmlEmail
   }
 
+  // Step 4
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
-      return console.log('Error')
+      return console.log('Error occurs')
     }
-    return console.log('Email envoyé!!!')
+    return console.log('Email sent!!!')
   })
-
 })
 
 app.get('*', (req, res) => {

@@ -31,7 +31,7 @@ class Contact extends Component {
 
     const { name, email, tel, message } = this.state
 
-    const form = await axios.post('/api/form', { credentials: 'include' }, {
+    const form = await axios.post('/api/form', {
       name,
       email,
       tel,
